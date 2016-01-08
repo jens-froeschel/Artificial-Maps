@@ -1,6 +1,10 @@
 package de.JensF.Artificial_Maps;
 
 public class ValueNoise {
+
+	
+	
+	
 	
 	/**
 	 * smoothes the array and scales the values to be between 0 and 1
@@ -132,7 +136,7 @@ public class ValueNoise {
 		}
 
 		if (total / totalAmplitude < 0 || total / totalAmplitude > 1)
-			System.out.println("Error: ValueNoise/noise returns value out of range [0,1]! Value: " + (total / totalAmplitude));
+			System.out.println("Error: noise returns value out of range [0,1]! Value: " + (total / totalAmplitude));
 
 		return total / totalAmplitude;
 	}
@@ -160,7 +164,7 @@ public class ValueNoise {
 	 * @param a value of the left point
 	 * @param b value of the right point
 	 * @param d between 0 and 1 determining if the point is nearer to a or b. 
-	 * d=0 means the point equals a and d=1 means the point equals b.
+	 * d = 0 means the point to interpolate ist a and d = 1 means the point is b.
 	 * @return the value of the point between a and b
 	 */
 	public static double Interpolate1D(double a, double b, double d) {
