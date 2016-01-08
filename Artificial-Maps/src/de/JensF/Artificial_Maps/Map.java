@@ -140,8 +140,8 @@ public class Map {
 		double[] rgb;
 		
 		switch(biom){
-	//	case LAND:   rgb = getLandColor(height, temperature, rainfall);
-	//		break;
+		case LAND:   rgb = getLandColor(height, temperature, rainfall);
+			break;
 	//	case MOUNTAIN:  rgb = getMountainColor(height, temperature, rainfall);
 	//		break;
 		case OCEAN:  rgb = getOceanColor(height, temperature, rainfall);
@@ -156,7 +156,9 @@ public class Map {
 	
 	
 	private double[] getLandColor(double height, double temperature, double rainfall) {
-		double[] rgb = ColorConverter.HSV_to_RGB(120 + (1-height)*120,  1 - height, rainfall);
+
+		double[] rgb = ColorConverter.HSV_to_RGB(60 + (1-height)*60,  1 - height, rainfall - 0.1);
+//		System.out.println("getOceanColor "+(120 + (0.3-height)*120)+"  "+  (0.3 - height) +"   "+rainfall+" \t "+(int)(rgb[0]*255)+"  "+(int)(rgb[1]*255)+"  "+(int)(rgb[2]*255));
 		return rgb;
 	}
 
@@ -166,7 +168,7 @@ public class Map {
 	}
 
 	private double[] getOceanColor(double height, double temperature, double rainfall){
-		double[] rgb = ColorConverter.HSV_to_RGB(120 + (1.17-height)*120,  1 - height, rainfall);
+		double[] rgb = ColorConverter.HSV_to_RGB(120 + (1.17-height)*120,  1 - height, rainfall-0.1);
 //		if(height > 0.1)
 //			System.out.println("getOceanColor "+(120 + (0.3-height)*120)+"  "+  (0.3 - height) +"   "+rainfall+" \t "+(int)(rgb[0]*255)+"  "+(int)(rgb[1]*255)+"  "+(int)(rgb[2]*255));
 		return rgb;
