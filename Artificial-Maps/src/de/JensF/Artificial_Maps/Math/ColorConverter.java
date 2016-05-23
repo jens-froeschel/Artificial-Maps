@@ -1,5 +1,9 @@
-package de.JensF.Artificial_Maps;
+package de.JensF.Artificial_Maps.Math;
 
+/**
+ * Diese Klasse ist eine Bibliothek des Autors Jens Froeschel und kuemmert sich um die konvertierung zwischen verschiedenen Farbraeumen.<br>
+ * Die hier umgesetzten Algorithmen sind nicht Teil der Bachelorarbeit und stellen nur ein Hilfsmittel fuer deren Umsetzung dar.
+ */
 public class ColorConverter {
 	
 	/**
@@ -42,7 +46,7 @@ public class ColorConverter {
 	 * input: HSV values<br>
 	 * H in range [0, 360]<br>
 	 * S and V in range [0,1]<br><p>
-	 * Output: [R, G, B] in range [0, 255]
+	 * Output: [R, G, B] in range [0, 1]
 	 */
 	public static double[] HSV_to_RGB(double h, double s, double v){
 		int hi = (int)(h/60);
@@ -86,7 +90,7 @@ public class ColorConverter {
 	public static int LAB_to_Integer(double L, double A, double B){
 		double[] XYZ = LAB_to_XYZ(L, A, B);
 		int[] RGB = XYZ_to_RGB(XYZ[0], XYZ[1], XYZ[2]);
-		return RGB_to_Integer(RGB[0], RGB[1], RGB[2]);
+		return intRGB_to_Integer(RGB[0], RGB[1], RGB[2]);
 	}
 	
 
@@ -195,12 +199,27 @@ public class ColorConverter {
 	}
 	
 	
+	/**
+	 * Input: RGB in range [0, 255]
+	 * Output: RGB in range [0,1]
+	 */
+	public static double[] intRGB_to_RGB(int R, int G, int B){
+		return new double[]{R/255d, G/255d, B/255d};
+	}
+
+	/**
+	 * Input: RGB in range [0, 1]
+	 * Output: Integer representing this RGB
+	 */
+	public static int RGB_to_Integer(double r, double g, double b) {
+		return intRGB_to_Integer((int)(r*255),(int)(g*255),(int)(b*255));
+	}
 	
 	/**
 	 * Input: RGB in range [0, 255]
 	 * Output: Integer representing this RGB
 	 */
-	public static int RGB_to_Integer(int R, int G, int B){
+	public static int intRGB_to_Integer(int R, int G, int B){
 		return 0xFF000000 | (R<<16) | (G<<8) | B;
 	}
 	
@@ -211,4 +230,5 @@ public class ColorConverter {
 	public static int[] Integer_to_RGB(int integer){
 		return new int[]{ (integer & 0x00FF0000)>>16, (integer & 0x0000FF00)>>8, integer & 0x000000FF };
 	}
+
 }
